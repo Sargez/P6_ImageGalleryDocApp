@@ -28,7 +28,7 @@ class imageGalleryViewController: UIViewController, UICollectionViewDataSource, 
         }
     }
     
-    @IBAction private func close(_ sender: UIBarButtonItem) {
+    @IBAction private func close(_ sender: UIBarButtonItem? = nil) {
         
         if document?.imageGallery != nil {
             
@@ -47,7 +47,10 @@ class imageGalleryViewController: UIViewController, UICollectionViewDataSource, 
                 }
             })
         }
-        
+    }
+    
+    @IBAction func closeBy(_ segue: UIStoryboardSegue) {
+        close()
     }
             
     //MARK: - Controller Life Cycle
