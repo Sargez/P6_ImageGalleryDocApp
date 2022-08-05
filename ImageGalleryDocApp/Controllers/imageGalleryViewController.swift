@@ -40,7 +40,7 @@ class imageGalleryViewController: UIViewController, UICollectionViewDataSource, 
                             
         }
         
-        dismiss(animated: true) {
+        presentingViewController?.dismiss(animated: true) {
             self.document?.close(completionHandler: { success in
                 if let observer = self.documentStateObserver {
                     NotificationCenter.default.removeObserver(observer)
@@ -298,7 +298,7 @@ class imageGalleryViewController: UIViewController, UICollectionViewDataSource, 
                 } else {
                     return true
                 }
-            default: return false
+            default: return true
             }
     }
     
@@ -314,6 +314,11 @@ class imageGalleryViewController: UIViewController, UICollectionViewDataSource, 
                         imageVC.imageURL = url.isFileURL ? makeRelativePath(with: url.lastPathComponent) : url
                         imageVC.title = imageGallery?.name
                     }
+                }
+            case "Show Document Info":
+                if let destination = segue.destination.contents as? DocumenInfoViewController {
+                    document?.thumbnail = firstImage?.snapshot
+                    destination.document = document
                 }
             default:
                 break
