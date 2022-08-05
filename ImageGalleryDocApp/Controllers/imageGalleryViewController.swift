@@ -9,7 +9,7 @@ import UIKit
 
 private let reuseIdentifier = "imageGalleryCell"
 
-class imageGalleryViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDragDelegate, UICollectionViewDropDelegate, UIDropInteractionDelegate {
+class imageGalleryViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDragDelegate, UICollectionViewDropDelegate, UIDropInteractionDelegate, UIPopoverPresentationControllerDelegate {
         
     //MARK: - public API, Model
     
@@ -287,7 +287,13 @@ class imageGalleryViewController: UIViewController, UICollectionViewDataSource, 
             }
         }
     }
+    
+    // MARK: - Popover presentation controller delegate's methds
         
+    func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
+        .none
+    }
+    
     // MARK: - Navigation
 
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
@@ -319,6 +325,9 @@ class imageGalleryViewController: UIViewController, UICollectionViewDataSource, 
                 if let destination = segue.destination.contents as? DocumenInfoViewController {
                     document?.thumbnail = firstImage?.snapshot
                     destination.document = document
+                    if let ppc = destination.popoverPresentationController {
+                        ppc.delegate = self
+                    }
                 }
             default:
                 break
