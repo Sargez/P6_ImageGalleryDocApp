@@ -25,7 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		982D272E289D2372006169BB /* DocumenInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumenInfoViewController.swift; sourceTree = SOURCE_ROOT; };
+		982D272E289D2372006169BB /* DocumenInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DocumenInfoViewController.swift; path = ImageGalleryDocApp/Controllers/DocumenInfoViewController.swift; sourceTree = SOURCE_ROOT; };
 		98C0F5D8288C307800147A1D /* ImageGalleryDocApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageGalleryDocApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		98C0F5DB288C307800147A1D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		98C0F5DD288C307800147A1D /* DocumentBrowserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentBrowserViewController.swift; sourceTree = "<group>"; };
