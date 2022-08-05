@@ -48,11 +48,7 @@ class imageGalleryViewController: UIViewController, UICollectionViewDataSource, 
             })
         }
     }
-    
-    @IBAction func closeBy(_ segue: UIStoryboardSegue) {
-        close()
-    }
-            
+                
     //MARK: - Controller Life Cycle
         
     override func viewDidLoad() {
@@ -87,6 +83,18 @@ class imageGalleryViewController: UIViewController, UICollectionViewDataSource, 
             }
         )
         
+        documentStateObserver = NotificationCenter.default.addObserver(
+            forName: UIDocument.stateChangedNotification,
+            object: self.document,
+            queue: OperationQueue.main,
+            using: { notification in
+                if self.document?.documentState == .normal {
+                    self.embeddedDocInfoVC?.document = self.document
+                }
+                print("document state change to: \(self.document!.documentState.comfortDocumentState)")
+            }
+        )
+        
         if document?.documentState != .normal {
             document?.open { success in
                 if success {
@@ -96,14 +104,6 @@ class imageGalleryViewController: UIViewController, UICollectionViewDataSource, 
                 } else {
                     self.imageGallery = ImageGallery(title: "Gallery", images: [])
                 }
-                self.documentStateObserver = NotificationCenter.default.addObserver(
-                    forName: UIDocument.stateChangedNotification,
-                    object: self.document,
-                    queue: OperationQueue.main,
-                    using: { notification in
-                        print("document state change to: \(self.document!.documentState.comfortDocumentState)")
-                    }
-                )
             }
         }
             
@@ -123,21 +123,14 @@ class imageGalleryViewController: UIViewController, UICollectionViewDataSource, 
         flowLayout?.invalidateLayout()
     }
     
-    private var documentStateObserver: NSObjectProtocol?
-    private var imageGelleryDocumentObserver: NSObjectProtocol?
-    
     // MARK: - Gesture recognizers implementation
     
     @objc private func zoomCollectionView(_ recognizer: UIPinchGestureRecognizer) {
         
-        var scaleStart: CGFloat = 1
-        
         switch recognizer.state {
-        case .began:
-            scaleStart = scaleFactor
-        case .changed:
+        case .changed,.ended:
             
-            scaleFactor = recognizer.scale * scaleStart
+            scaleFactor = recognizer.scale
             flowLayout?.invalidateLayout()
             
         default:
@@ -324,6 +317,10 @@ class imageGalleryViewController: UIViewController, UICollectionViewDataSource, 
                         imageVC.title = imageGallery?.name
                     }
                 }
+            case "Show Embeded Document Info":
+                if let docInfoVC = segue.destination.contents as? DocumenInfoViewController {
+                    embeddedDocInfoVC = docInfoVC
+                }
             case "Show Document Info":
                 if let destination = segue.destination.contents as? DocumenInfoViewController {
                     document?.thumbnail = firstImage?.snapshot
@@ -336,6 +333,10 @@ class imageGalleryViewController: UIViewController, UICollectionViewDataSource, 
                 break
             }
         }
+    }
+    // MARK: unwimd segue
+    @IBAction func closeBy(_ segue: UIStoryboardSegue) {
+        close()
     }
     
     //MARK: - Garbage view delegate methods
@@ -350,6 +351,10 @@ class imageGalleryViewController: UIViewController, UICollectionViewDataSource, 
     
     //MARK: - Private implementation
       
+    private var embeddedDocInfoVC: DocumenInfoViewController?
+    private var documentStateObserver: NSObjectProtocol?
+    private var imageGelleryDocumentObserver: NSObjectProtocol?
+    
     private var firstImage: UIImageView? {
         (imageGalleryCollectionView.cellForItem(at: IndexPath(item: 0, section: 0)) as? imageGalleryCollectionViewCell)?.imageView
     }
