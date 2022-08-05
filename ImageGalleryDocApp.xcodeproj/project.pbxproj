@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		982D272F289D2372006169BB /* DocumenInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 982D272E289D2372006169BB /* DocumenInfoViewController.swift */; };
 		98C0F5DC288C307800147A1D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C0F5DB288C307800147A1D /* AppDelegate.swift */; };
 		98C0F5DE288C307800147A1D /* DocumentBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C0F5DD288C307800147A1D /* DocumentBrowserViewController.swift */; };
 		98C0F5E2288C307800147A1D /* ImageGalleryDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C0F5E1288C307800147A1D /* ImageGalleryDocument.swift */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		982D272E289D2372006169BB /* DocumenInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumenInfoViewController.swift; sourceTree = SOURCE_ROOT; };
 		98C0F5D8288C307800147A1D /* ImageGalleryDocApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageGalleryDocApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		98C0F5DB288C307800147A1D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		98C0F5DD288C307800147A1D /* DocumentBrowserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentBrowserViewController.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 		98C0F604288C320B00147A1D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				982D272E289D2372006169BB /* DocumenInfoViewController.swift */,
 				98C0F5DD288C307800147A1D /* DocumentBrowserViewController.swift */,
 				98C0F5F7288C316D00147A1D /* imageGalleryViewController.swift */,
 				98C0F5F6288C316D00147A1D /* imageViewController.swift */,
@@ -194,6 +197,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				982D272F289D2372006169BB /* DocumenInfoViewController.swift in Sources */,
 				98C0F5FD288C318600147A1D /* ImageGallery.swift in Sources */,
 				98C0F601288C318E00147A1D /* Fetcher.swift in Sources */,
 				98C0F5FB288C317D00147A1D /* GarbageView.swift in Sources */,

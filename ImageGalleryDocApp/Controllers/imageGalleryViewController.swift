@@ -61,7 +61,7 @@ class imageGalleryViewController: UIViewController, UICollectionViewDataSource, 
                                        width: navBar.frame.width * 0.3,
                                        height: navBar.frame.height)
             
-            navigationItem.rightBarButtonItem = UIBarButtonItem(customView: garbageView)
+            navigationItem.rightBarButtonItems? += [UIBarButtonItem(customView: garbageView)]
         }
                        
         let pinch = UIPinchGestureRecognizer(target: self, action: #selector(zoomCollectionView(_:)))
